@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "reanalysis-api"
+version = "0.1.0"
+description = ""
+authors = ["Jim Tang <jim.z.tang@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+xarray = "^2024.7.0"
+zarr = "^2.18.2"
+metpy = "^1.6.2"
+fastapi = "^0.112.0"
+uvicorn = {version = "^0.30.5", extras = ["standard"]}
+fsspec = "^2024.6.1"
+gcsfs = "^2024.6.1"
+pint-xarray = "^0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
