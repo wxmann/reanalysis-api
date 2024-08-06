@@ -1,6 +1,6 @@
 import pandas as pd
 import xarray as xr
-import pint_xarray
+import pint_xarray  # type: ignore
 import metpy.calc as mpcalc
 import metpy.constants as mpconst
 from metpy.units import units
@@ -49,10 +49,10 @@ def transform_era5_isobaric(ds: xr.Dataset) -> Profile:
     specific_humidity = ds["specific_humidity"].where(above_sfc_mask, drop=True)
     dewpoint = mpcalc.dewpoint_from_specific_humidity(
         pressure * units.hectopascal,
-        temperature * units.kelvin,
+        temperature * units(temperature.units),
         specific_humidity * units("kg/kg"),
     )
-    dewpoint = dewpoint.pint.to(units.K)
+    dewpoint = dewpoint.pint.to(temperature.units)
 
     u_wind = ds["u_component_of_wind"].where(above_sfc_mask, drop=True)
     v_wind = ds["v_component_of_wind"].where(above_sfc_mask, drop=True)
